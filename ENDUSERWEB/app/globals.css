@@ -1,4 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
+
   --primary: #426FB0;
   --primary-dark: #465997;
   --social-bg: #faf6eb;

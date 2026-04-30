@@ -16,7 +16,30 @@ export default function HomePage() {
     if (!isReady) return;
     if (!token) {
       router.replace('/login');
+      return;
     }
+
+    // Fetch the user's latest application and redirect based on status
+    const checkApplicationStatus = async () => {
+      try {
+        const res = await fetch('http://localhost:3001/api/v1/forms/my-application', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!res.ok) return; // No application yet — stay on dashboard
+
+        const data = await res.json();
+        const status = data?.data?.status;
+
+        if (status === 'approved' || status === 'submitted' || status === 'pending' || status === 'rejected') {
+          router.replace('/applications');
+        }
+        // If no status match, stay on dashboard (e.g. first-time user)
+      } catch {
+        // Silently fail — user stays on dashboard
+      }
+    };
+
+    checkApplicationStatus();
   }, [isReady, token, router]);
 
   if (!isReady || !token) {
