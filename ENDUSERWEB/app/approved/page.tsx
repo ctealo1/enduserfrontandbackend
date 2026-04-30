@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import styles from "./page.module.css";
 import QRCode from "react-qr-code";
 import { useAuth } from "@/lib/auth-context";
@@ -66,12 +67,7 @@ const IconCheck = () => (
   </svg>
 );
 
-const IconMapPin = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-    <circle cx="12" cy="10" r="3" />
-  </svg>
-);
+
 
 // ─── Main Component ──────────────────────────────────────────────────────────
 
@@ -79,7 +75,6 @@ export default function BayaniHubEventPass() {
   const { user, token } = useAuth();
   const [copied, setCopied] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  const [showDeployment, setShowDeployment] = useState(false);
   const [appData, setAppData] = useState<any>(null);
 
   const fetchApplication = async () => {
@@ -170,9 +165,17 @@ export default function BayaniHubEventPass() {
       {/* ── Navbar ── */}
       <nav className={styles.navbar}>
         <div className={styles.navLeft}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logos/logo.png" alt="BayaniHub logo" className={styles.logo} />
-          <span className={styles.brand}>BayaniHub</span>
+          <Link href="/dashboard" className={styles.logoContainer}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo_b.png" alt="BayaniHub logo" className={styles.logo} />
+            <span className={styles.brand}>BayaniHub</span>
+          </Link>
+
+          <div className={styles.navLinks}>
+            <Link href="/dashboard" className={styles.navLink}>Home</Link>
+            <Link href="/about" className={styles.navLink}>About Us</Link>
+            <Link href="/applications" className={`${styles.navLink} ${styles.activeLink}`}>Applications</Link>
+          </div>
         </div>
         <div className={styles.navRight}>
           <button className={styles.iconBtn} aria-label="Help"><IconHelp /></button>
@@ -239,24 +242,13 @@ export default function BayaniHubEventPass() {
             </p>
           </div>
 
-          {/* Deployment Info Button */}
-          <button 
-            className={styles.deployBtn} 
-            onClick={() => setShowDeployment(!showDeployment)}
-          >
-            <IconMapPin />
-            {showDeployment ? "Hide Deployment Details" : "View Deployment Site"}
-          </button>
-
-          {/* Deployment Details Expander */}
-          {showDeployment && (
-            <div className={styles.deployDetails}>
-              <h3 className={styles.deployTitle}>Deployment Location</h3>
-              <p className={styles.deployText}><strong>Venue ID:</strong> {venue}</p>
-              <p className={styles.deployText}><strong>Status:</strong> {appData?.status?.toUpperCase() || 'UNKNOWN'}</p>
-              <p className={styles.deployText}><strong>Instructions:</strong> Please proceed to the designated entrance for this location and present this Event Pass to the coordinators.</p>
-            </div>
-          )}
+          {/* Deployment Details (Always Visible) */}
+          <div className={styles.deployDetails}>
+            <h3 className={styles.deployTitle}>Deployment Location</h3>
+            <p className={styles.deployText}><strong>Venue ID:</strong> {venue}</p>
+            <p className={styles.deployText}><strong>Status:</strong> {appData?.status?.toUpperCase() || 'UNKNOWN'}</p>
+            <p className={styles.deployText}><strong>Instructions:</strong> Please proceed to the designated entrance for this location and present this Event Pass to the coordinators.</p>
+          </div>
         </div>
 
         {/* ── Right card: QR / Approval ── */}

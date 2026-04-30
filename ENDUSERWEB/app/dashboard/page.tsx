@@ -78,6 +78,11 @@ export default function HomePage() {
                 <Text style={[styles.navLink, { transition: 'all 0.2s ease' }, hovered && { color: '#4273B8' }]}>About Us</Text>
               )}
             </Pressable>
+            <Pressable onPress={() => router.push('/applications')}>
+              {({ hovered }: any) => (
+                <Text style={[styles.navLink, { transition: 'all 0.2s ease' }, hovered && { color: '#4273B8' }]}>Applications</Text>
+              )}
+            </Pressable>
           </View>
         </View>
 

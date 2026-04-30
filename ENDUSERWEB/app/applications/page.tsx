@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
 import styles from "./page.module.css";
@@ -85,9 +86,17 @@ export default function ApplicationsPage() {
       {/* Navbar */}
       <nav className={styles.navbar}>
         <div className={styles.navLeft}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logos/logo.png" alt="BayaniHub logo" className={styles.logo} />
-          <span className={styles.brand}>BayaniHub</span>
+          <Link href="/dashboard" className={styles.logoContainer}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo_b.png" alt="BayaniHub logo" className={styles.logo} />
+            <span className={styles.brand}>BayaniHub</span>
+          </Link>
+
+          <div className={styles.navLinks}>
+            <Link href="/dashboard" className={styles.navLink}>Home</Link>
+            <Link href="/about" className={styles.navLink}>About Us</Link>
+            <Link href="/applications" className={`${styles.navLink} ${styles.activeLink}`}>Applications</Link>
+          </div>
         </div>
         <div className={styles.navRight}>
           <button className={styles.iconBtn} aria-label="Help"><IconHelp /></button>

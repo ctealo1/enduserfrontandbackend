@@ -23,8 +23,11 @@ export default function AboutPage() {
             <Pressable onPress={() => router.push('/')}>
               {({ hovered }: any) => <Text style={[styles.navLink, styles.animated, hovered && { color: '#4273B8' }]}>Home</Text>}
             </Pressable>
-            <Pressable>
-              <Text style={[styles.navLink, styles.activeLink]}>About Us</Text>
+            <Pressable onPress={() => router.push('/about')}>
+              {({ hovered }: any) => <Text style={[styles.navLink, styles.animated, styles.activeLink, hovered && { color: '#4273B8' }]}>About Us</Text>}
+            </Pressable>
+            <Pressable onPress={() => router.push('/applications')}>
+              {({ hovered }: any) => <Text style={[styles.navLink, styles.animated, hovered && { color: '#4273B8' }]}>Applications</Text>}
             </Pressable>
           </View>
         </View>

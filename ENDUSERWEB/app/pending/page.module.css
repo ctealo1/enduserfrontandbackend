@@ -9,15 +9,22 @@
 .navbar {
   background-color: white;
   border-bottom: 1px solid #e5e7eb;
-  padding: 1rem 2rem;
+  padding: 0 2.5rem;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.navLeft { display: flex; align-items: center; gap: 0.75rem; }
-.logo { width: 2rem; height: 2rem; object-fit: contain; }
-.brand { font-weight: 700; color: #1e3a8a; font-size: 1.25rem; }
+.navLeft { display: flex; align-items: center; gap: 2.5rem; }
+.logoContainer { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+.logo { width: 45px; height: 45px; object-fit: contain; }
+.brand { font-size: 24px; font-weight: 400; color: #111827; letter-spacing: -0.5px; }
+
+.navLinks { display: flex; gap: 2.5rem; align-items: center; }
+.navLink { font-size: 0.95rem; font-weight: 600; color: #4b5563; text-decoration: none; transition: color 0.2s; }
+.navLink:hover { color: #1e3a8a; }
+.activeLink { color: #1e3a8a; }
 
 .navRight { display: flex; align-items: center; gap: 1.25rem; color: #4b5563; }
 .iconBtn { background: none; border: none; cursor: pointer; color: inherit; display: flex; }

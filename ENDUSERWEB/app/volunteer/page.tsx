@@ -236,6 +236,7 @@ export default function VolunteerPage() {
           <View style={styles.navLinks}>
             <Pressable onPress={() => router.push('/dashboard')}><Text style={styles.navLink}>Home</Text></Pressable>
             <Pressable onPress={() => router.push('/about')}><Text style={styles.navLink}>About Us</Text></Pressable>
+            <Pressable onPress={() => router.push('/applications')}><Text style={styles.navLink}>Applications</Text></Pressable>
           </View>
         </View>
         <View style={styles.navRight}>
